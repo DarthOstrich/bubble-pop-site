@@ -3,6 +3,12 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+const stores = [
+	{ name: 'Apple App Store' },
+	{ name: 'Google Play' },
+	{ name: 'Steam' },
+];
 ---
 
 <!doctype html>
@@ -13,38 +19,112 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	<body>
 		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+			<section class="hero">
+				<h1>Bubble Pop</h1>
+				<p class="tagline">{SITE_DESCRIPTION}</p>
+			</section>
+
+			<section>
+				<h2>Two ways to play</h2>
+				<p>Bubbles fall. You pop them. Simple to pick up, with two ways to play.</p>
+				<article>
+					<h3>Relax Mode</h3>
+					<p>
+						Set your own pace with a drop-rate slider and pop at your leisure — no lives, no
+						lose condition, no pressure.
+					</p>
+				</article>
+				<article>
+					<h3>Competitive Mode</h3>
+					<p>
+						Bubbles fall faster and thicker the longer you survive. Smaller bubbles are worth
+						more points but harder to hit. Miss three and it's game over — submit your score and
+						see how you stack up on the daily, weekly, and all-time leaderboards.
+					</p>
+				</article>
+			</section>
+
+			<section>
+				<h2>Five backdrops, five moods</h2>
+				<p>
+					Bamboo Forest, Outer Space, Under the Sea, Magical Girl, and Soup — each with its own
+					art and ambient music. Pick your favorite in Relax Mode, or let Competitive Mode cycle
+					through all five as you level up.
+				</p>
+			</section>
+
+			<section>
+				<h2>Bubble styles</h2>
+				<p>
+					Rainbow and Clear come free. Unlock Gold, Pink, Blue, and Green with Orbs — earn them
+					by playing, or buy an Orb pack if you'd rather skip ahead.
+				</p>
+			</section>
+
+			<section>
+				<h2>Play instantly, no ads</h2>
+				<p>
+					No sign-up required — just pick a nickname the first time you submit a score. Sign in
+					any time to keep your Orbs, unlocks, and scores synced across every device you play on.
+				</p>
+			</section>
+
+			<section>
+				<h2>Where to play</h2>
+				<ul class="stores">
+					{
+						stores.map((store) => (
+							<li>
+								<a href="#" class="store-badge" aria-disabled="true" tabindex="-1">
+									<span class="store-name">{store.name}</span>
+									<span class="store-status">Coming soon</span>
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</section>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style>
+	.hero {
+		text-align: center;
+	}
+	.tagline {
+		font-size: 1.25em;
+		color: rgb(var(--gray));
+	}
+	article {
+		margin-bottom: 1.5em;
+	}
+	.stores {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1em;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.store-badge {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25em;
+		padding: 1em 1.5em;
+		border: 1px solid rgb(var(--gray-light));
+		border-radius: 8px;
+		color: rgb(var(--gray-dark));
+		text-decoration: none;
+		cursor: not-allowed;
+		opacity: 0.6;
+	}
+	.store-name {
+		font-weight: bold;
+	}
+	.store-status {
+		font-size: 0.85em;
+		color: rgb(var(--gray));
+	}
+</style>
