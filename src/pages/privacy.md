@@ -78,4 +78,4 @@ If this policy changes, the "Last updated" date above will be revised.
 
 ## Contact
 
-Questions about this policy can be sent to: **[email protected]**
+Questions about this policy can be sent to: **[jared@digitalnutt.com](mailto:jared@digitalnutt.com)**
