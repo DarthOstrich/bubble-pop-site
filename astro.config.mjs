@@ -11,11 +11,10 @@ export default defineConfig({
 	site: "https://bubblepop.digitalnutt.com",
 	integrations: [mdx(), sitemap()],
 	adapter: cloudflare({
-		platformProxy: {
-			enabled: true,
-		},
+		imageService: "passthrough",
 	}),
-  vite: {
-    plugins: [tailwindcss()],
-  },
+	session: false,
+	vite: {
+		plugins: [tailwindcss()],
+	},
 });

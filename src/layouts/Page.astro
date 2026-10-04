@@ -19,59 +19,29 @@ const { title, description, pubDate, updatedDate } = Astro.props.frontmatter;
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
 	</head>
 
 	<body>
 		<Header />
 		<main>
-			<article>
-				<div class="prose">
-					<div class="title">
-						{
-							pubDate && (
-								<div class="date">
-									<FormattedDate date={new Date(pubDate)} />
-									{updatedDate && (
-										<div class="last-updated-on">
-											Last updated on <FormattedDate date={new Date(updatedDate)} />
-										</div>
-									)}
-								</div>
-							)
-						}
-						<h1>{title}</h1>
-						<hr />
-					</div>
+			<article class="mx-auto max-w-3xl px-4 py-12">
+				<div class="mb-8 text-center">
+					{
+						pubDate && (
+							<div class="mb-2 text-sm text-slate/70">
+								<FormattedDate date={new Date(pubDate)} />
+								{updatedDate && (
+									<div class="italic">
+										Last updated on <FormattedDate date={new Date(updatedDate)} />
+									</div>
+								)}
+							</div>
+						)
+					}
+					<h1 class="text-4xl font-bold text-slate">{title}</h1>
+					<hr class="mt-6 border-skyblue" />
+				</div>
+				<div class="content">
 					<slot />
 				</div>
 			</article>
@@ -79,3 +49,32 @@ const { title, description, pubDate, updatedDate } = Astro.props.frontmatter;
 		<Footer />
 	</body>
 </html>
+
+<style>
+	.content :global(h2) {
+		margin: 1.5em 0 0.5em;
+		font-size: 1.5em;
+		font-weight: bold;
+		color: var(--color-slate);
+	}
+	.content :global(p) {
+		margin-bottom: 1em;
+		line-height: 1.7;
+	}
+	.content :global(ul) {
+		margin: 0 0 1em 1.25em;
+		list-style: disc;
+	}
+	.content :global(li) {
+		margin-bottom: 0.5em;
+		line-height: 1.7;
+	}
+	.content :global(a) {
+		color: var(--color-slate);
+		text-decoration: underline;
+		text-decoration-color: var(--color-blush);
+	}
+	.content :global(strong) {
+		font-weight: bold;
+	}
+</style>

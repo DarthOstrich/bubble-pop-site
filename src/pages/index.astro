@@ -4,10 +4,34 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
+const backdrops = [
+	{ name: '90s Aura', image: '/backdrops/90s-aura.jpg' },
+	{ name: 'Bath Time', image: '/backdrops/bath-time.jpg' },
+	{ name: 'Dream', image: '/backdrops/dream.jpg' },
+	{ name: 'Galaxy', image: '/backdrops/galaxy.jpg' },
+	{ name: 'Magical Girl', image: '/backdrops/magical-girl.jpg' },
+	{ name: 'Northern Lights', image: '/backdrops/northern-lights.jpg' },
+];
+
 const stores = [
-	{ name: 'Apple App Store' },
-	{ name: 'Google Play' },
-	{ name: 'Steam' },
+	{
+		name: 'Apple App Store',
+		href: '#',
+		status: 'Coming soon',
+		live: false,
+	},
+	{
+		name: 'Google Play',
+		href: 'https://play.google.com/store/apps/details?id=com.digitalnutt.bubblepop',
+		status: 'Available now',
+		live: true,
+	},
+	{
+		name: 'Steam',
+		href: 'https://store.steampowered.com/app/5129250/Bubble_Pop/',
+		status: 'Available now',
+		live: true,
+	},
 ];
 ---
 
@@ -19,66 +43,119 @@ const stores = [
 	<body>
 		<Header />
 		<main>
-			<section class="hero">
-				<h1>Bubble Pop</h1>
-				<p class="tagline">{SITE_DESCRIPTION}</p>
+			<section class="bg-gradient-to-b from-aqua/50 to-eggshell px-4 py-16 text-center sm:py-24">
+				<img
+					src="/bubble-pop-icon.png"
+					alt=""
+					width="96"
+					height="96"
+					class="mx-auto mb-6 rounded-2xl shadow-lg"
+				/>
+				<h1 class="text-5xl font-bold text-slate sm:text-6xl">Bubble Pop</h1>
+				<p class="mx-auto mt-4 max-w-xl text-lg text-slate/80 sm:text-xl">{SITE_DESCRIPTION}</p>
+				<a
+					href="#where-to-play"
+					class="mt-8 inline-block rounded-full bg-blush px-8 py-3 font-bold text-slate shadow-md transition-transform hover:scale-105"
+				>
+					Play now
+				</a>
 			</section>
 
-			<section>
-				<h2>Two ways to play</h2>
-				<p>Bubbles fall. You pop them. Simple to pick up, with two ways to play.</p>
-				<article>
-					<h3>Relax Mode</h3>
-					<p>
-						Set your own pace with a drop-rate slider and pop at your leisure — no lives, no
-						lose condition, no pressure.
+			<section class="mx-auto max-w-3xl px-4 py-16">
+				<h2 class="text-center text-3xl font-bold text-slate">Two ways to play</h2>
+				<p class="mx-auto mt-3 max-w-xl text-center text-slate/80">
+					Bubbles fall. You pop them. Simple to pick up, with two ways to play.
+				</p>
+				<div class="mt-10 grid gap-6 sm:grid-cols-2">
+					<article class="rounded-2xl bg-skyblue/30 p-6">
+						<h3 class="text-xl font-bold text-slate">Relax Mode</h3>
+						<p class="mt-2 text-slate/80">
+							Set your own pace with a drop-rate slider and pop at your leisure — no lives, no
+							lose condition, no pressure.
+						</p>
+					</article>
+					<article class="rounded-2xl bg-blush/20 p-6">
+						<h3 class="text-xl font-bold text-slate">Competitive Mode</h3>
+						<p class="mt-2 text-slate/80">
+							Bubbles fall faster and thicker the longer you survive. Smaller bubbles are worth
+							more points but harder to hit. Miss three and it's game over — submit your score
+							and see how you stack up on the daily, weekly, and all-time leaderboards.
+						</p>
+					</article>
+				</div>
+			</section>
+
+			<section class="bg-aqua/30 px-4 py-16">
+				<div class="mx-auto max-w-3xl text-center">
+					<h2 class="text-3xl font-bold text-slate">Six backdrops, six moods</h2>
+					<p class="mx-auto mt-3 max-w-xl text-slate/80">
+						90s Aura, Bath Time, Dream, Galaxy, Magical Girl, and Northern Lights — each with its
+						own art and ambient music. Pick your favorite in Relax Mode, or let Competitive Mode
+						cycle through all six as you level up.
 					</p>
-				</article>
-				<article>
-					<h3>Competitive Mode</h3>
-					<p>
-						Bubbles fall faster and thicker the longer you survive. Smaller bubbles are worth
-						more points but harder to hit. Miss three and it's game over — submit your score and
-						see how you stack up on the daily, weekly, and all-time leaderboards.
+					<ul class="mx-auto mt-8 grid max-w-xl grid-cols-3 gap-4 sm:grid-cols-6">
+						{
+							backdrops.map((backdrop) => (
+								<li class="flex flex-col items-center gap-2">
+									<img
+										src={backdrop.image}
+										alt={backdrop.name}
+										width="90"
+										height="90"
+										class="aspect-square w-full rounded-xl object-cover shadow-md"
+									/>
+									<span class="text-xs text-slate/80">{backdrop.name}</span>
+								</li>
+							))
+						}
+					</ul>
+				</div>
+			</section>
+
+			<section class="mx-auto max-w-3xl px-4 py-16 text-center">
+				<h2 class="text-3xl font-bold text-slate">Bubble styles</h2>
+				<p class="mx-auto mt-3 max-w-xl text-slate/80">
+					Rainbow and Clear come free. Unlock Gold, Pink, Blue, and Green with Orbs — earn them by
+					playing, or buy an Orb pack if you'd rather skip ahead.
+				</p>
+			</section>
+
+			<section class="bg-skyblue/20 px-4 py-16 text-center">
+				<div class="mx-auto max-w-3xl">
+					<h2 class="text-3xl font-bold text-slate">Play instantly, no ads</h2>
+					<p class="mx-auto mt-3 max-w-xl text-slate/80">
+						No sign-up required — just pick a nickname the first time you submit a score. Sign in
+						any time to keep your Orbs, unlocks, and scores synced across every device you play
+						on.
 					</p>
-				</article>
+				</div>
 			</section>
 
-			<section>
-				<h2>Five backdrops, five moods</h2>
-				<p>
-					Bamboo Forest, Outer Space, Under the Sea, Magical Girl, and Soup — each with its own
-					art and ambient music. Pick your favorite in Relax Mode, or let Competitive Mode cycle
-					through all five as you level up.
-				</p>
-			</section>
-
-			<section>
-				<h2>Bubble styles</h2>
-				<p>
-					Rainbow and Clear come free. Unlock Gold, Pink, Blue, and Green with Orbs — earn them
-					by playing, or buy an Orb pack if you'd rather skip ahead.
-				</p>
-			</section>
-
-			<section>
-				<h2>Play instantly, no ads</h2>
-				<p>
-					No sign-up required — just pick a nickname the first time you submit a score. Sign in
-					any time to keep your Orbs, unlocks, and scores synced across every device you play on.
-				</p>
-			</section>
-
-			<section>
-				<h2>Where to play</h2>
-				<ul class="stores">
+			<section id="where-to-play" class="px-4 py-16 text-center">
+				<h2 class="text-3xl font-bold text-slate">Where to play</h2>
+				<ul class="mx-auto mt-8 flex max-w-xl flex-wrap justify-center gap-4">
 					{
 						stores.map((store) => (
 							<li>
-								<a href="#" class="store-badge" aria-disabled="true" tabindex="-1">
-									<span class="store-name">{store.name}</span>
-									<span class="store-status">Coming soon</span>
-								</a>
+								{store.live ? (
+									<a
+										href={store.href}
+										target="_blank"
+										rel="noopener noreferrer"
+										class="flex flex-col gap-1 rounded-xl bg-blush px-6 py-4 text-slate no-underline shadow-md transition-transform hover:scale-105"
+									>
+										<span class="font-bold">{store.name}</span>
+										<span class="text-sm text-slate/80">{store.status}</span>
+									</a>
+								) : (
+									<span
+										aria-disabled="true"
+										class="flex cursor-not-allowed flex-col gap-1 rounded-xl border border-slate/20 px-6 py-4 text-slate/50"
+									>
+										<span class="font-bold">{store.name}</span>
+										<span class="text-sm">{store.status}</span>
+									</span>
+								)}
 							</li>
 						))
 					}
@@ -88,43 +165,3 @@ const stores = [
 		<Footer />
 	</body>
 </html>
-
-<style>
-	.hero {
-		text-align: center;
-	}
-	.tagline {
-		font-size: 1.25em;
-		color: rgb(var(--gray));
-	}
-	article {
-		margin-bottom: 1.5em;
-	}
-	.stores {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 1em;
-		list-style: none;
-		margin: 0;
-		padding: 0;
-	}
-	.store-badge {
-		display: flex;
-		flex-direction: column;
-		gap: 0.25em;
-		padding: 1em 1.5em;
-		border: 1px solid rgb(var(--gray-light));
-		border-radius: 8px;
-		color: rgb(var(--gray-dark));
-		text-decoration: none;
-		cursor: not-allowed;
-		opacity: 0.6;
-	}
-	.store-name {
-		font-weight: bold;
-	}
-	.store-status {
-		font-size: 0.85em;
-		color: rgb(var(--gray));
-	}
-</style>
